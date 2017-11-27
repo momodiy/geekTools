@@ -1,6 +1,6 @@
 const toString = Object.prototype.toString;
 
-function kindOf(val) {
+const kindOf=val=> {
 	// 原始数据类型
 	if(typeof val === 'undefined') {
 		return 'undefined';
@@ -101,3 +101,5 @@ function kindOf(val) {
 	// 必定是个简单对象
 	return 'object';
 };
+
+module.exports=kindOf;
