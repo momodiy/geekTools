@@ -1,4 +1,4 @@
-const _=require('lodash');
+const _ = require('lodash');
 
 const upset = () => {
     Array.prototype.upset = function () {
@@ -31,7 +31,44 @@ const countOccurrences = (arr, value) => arr.reduce((a, v) => v === value ? a + 
 // countOccurrences([1,1,2,1,2,3], 1) -> 3
 
 /*
-* 数组去重(es6)
+* 数组去重
+* 注：暂不考虑对象字面量，函数等引用类型的去重，也不考虑 NaN, undefined, null等特殊类型情况。
 * */
+
+//基础的es5数组去重
+var a = [1, 1, '1', '2', 1];
+
+function unique(arr) {
+    var res = []
+    for (var i = 0, len = arr.length; i < len; i++) {
+        var item = arr[i]
+        for (var j = 0, len = res.length; j < jlen; j++) {
+            if (item === res[j]) //arr数组的item在res已经存在,就跳出循环
+                break
+        }
+        if (j === jlen) //循环完毕,arr数组的item在res找不到,就push到res数组中
+            res.push(item)
+    }
+    return res
+}
+
+console.log(unique(a)) // [1, 2, "1"]
+
+//filter遍历去重
+var a = [1, 1, '1', '2', 1];
+
+function unique(arr) {
+    return arr.filter(function (ele, index, array) {
+        return array.indexOf(ele) === index//很巧妙,这样筛选一对一的,过滤掉重复的
+    })
+}
+
+//将以上函数改写为es6
+const unique = arr => arr.filter((ele, index, array) => array.indexOf(ele) === index);
+
+console.log(unique(a)) // [1, 2, "1"]
+
+//set去重，最简去重方式
 const unique = arr => [...new Set(arr)];
 // unique([1,2,2,3,4,4,5]) -> [1,2,3,4,5]
+
