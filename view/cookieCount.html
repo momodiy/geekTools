@@ -25,10 +25,10 @@
     (() => {
         //todo 加入cookie有效期判断
         let expireDate = new Date(),
-            hitCt = +cookieVal("pageHits");
+            times = +cookieVal("pageHits");
         expireDate.setMonth(expireDate.getMonth() + 6);
-        document.cookie = "pageHits=" + ++hitCt + ";expires=" + expireDate.toGMTString();
-        document.getElementById("visitInfo").innerHTML = "You have visited this page " + hitCt + " times.";
+        document.cookie = "pageHits=" + ++times + ";expires=" + expireDate.toGMTString();
+        document.getElementById("visitInfo").innerHTML = "You have visited this page " + times + " times.";
 
     })();
 
