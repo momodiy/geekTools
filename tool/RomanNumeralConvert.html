@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字转化为罗马字符</title>
+</head>
+<body>
+<input type="text" maxlength="4" placeholder="请输入1-9999的正整数" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+<button onclick="convert()">转化</button>
+<h3 id="roman"></h3>
+<script>
+
+    /*
+     * param {number} 10000以内的数字
+     * return {string} 对应的罗马字符
+     */
+    const convertToRoman = num => {
+        let decimalValue = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]; //十进制赋值数组
+        let romanNumeral = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']; ////十进制赋值数组对应的罗马字符数组
+        let romanized = '';
+        /*
+        * 1.遍历十进制数组,
+        * 2.选择小于等于传入数字里的最大的一个（以36为例，第一次会选择10【40>36>10】）
+        * 3.将当前选择的数字对应的罗马字符保存（字面量拼接）
+        * 4.传入数字减去已经获取到的数字
+        * 5.重复234步，知道被传入数字减到0
+        * 6.romanized就是最终转化成的罗马数字
+        *  注：此算法只支持10000以下的所有正整数转化罗马字符
+        * */
+        decimalValue.map((v, i) => {
+            while (v < num) {
+                romanized += romanNumeral[i];
+                num -= v;
+            }
+        });
+        return romanized;
+    };
+    // convertToRoman(36);
+
+    const convert = () => {
+        let result = convertToRoman(document.getElementsByTagName('input')[0].value);
+        if (!result) alert("请输入四位正整数");
+        document.getElementById('roman').innerText = result;
+    }
+</script>
+</body>
+</html>
