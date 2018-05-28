@@ -1,0 +1,34 @@
+.ui-segment {
+    color: #ff9149;
+    border: 1px solid #ff9149;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: 'Lato', Georgia, Serif;
+    vertical-align: middle;
+}
+
+.ui-segment span.option.active {
+    background-color: #ff9149;
+    color: white;
+}
+
+.ui-segment span.option {
+    font-size: 13px;
+    padding: 5px 10px 0 10px;
+    height: 32px;
+    text-align: center;
+    display: inline-block;
+    line-height: 23px;
+    margin: 0;
+    cursor: pointer;
+    border-right: 1px solid #ff9149;
+    vertical-align: middle;
+}
+
+.ui-segment span.option:last-child {
+    border-right: none;
+}
+
+.segment-select {
+    display: none;
+}
