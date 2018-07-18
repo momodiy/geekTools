@@ -1,9 +1,9 @@
-const _ = require('lodash');
+// import _ from 'lodash'
 
 const upset = () => {
-    Array.prototype.upset = function () {
-        return this.sort(() => Math.random() - 0.5)
-    };
+  Array.prototype.upset = function () {
+    return this.sort(() => Math.random() - 0.5)
+  };
 };
 
 /*
@@ -11,9 +11,9 @@ const upset = () => {
 */
 
 const anagrams = str => {
-    if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
-    return str.split('').reduce((acc, letter, i) =>
-        acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)), []);
+  if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+  return str.split('').reduce((acc, letter, i) =>
+    acc.concat(anagrams(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)), []);
 };
 // anagrams('abc') -> ['abc','acb','bac','bca','cab','cba']
 
@@ -36,39 +36,39 @@ const countOccurrences = (arr, value) => arr.reduce((a, v) => v === value ? a + 
 * */
 
 //基础的es5数组去重
-var a = [1, 1, '1', '2', 1];
+let a = [1, 1, '1', '2', 1];
 
 function unique(arr) {
-    var res = []
-    for (var i = 0, len = arr.length; i < len; i++) {
-        var item = arr[i]
-        for (var j = 0, len = res.length; j < jlen; j++) {
-            if (item === res[j]) //arr数组的item在res已经存在,就跳出循环
-                break
-        }
-        if (j === jlen) //循环完毕,arr数组的item在res找不到,就push到res数组中
-            res.push(item)
+  var res = []
+  for (var i = 0, len = arr.length; i < len; i++) {
+    var item = arr[i]
+    for (var j = 0, len = res.length; j < len; j++) {
+      if (item === res[j]) //arr数组的item在res已经存在,就跳出循环
+        break
     }
-    return res
+    if (j === len) //循环完毕,arr数组的item在res找不到,就push到res数组中
+      res.push(item)
+  }
+  return res
 }
 
 console.log(unique(a)) // [1, 2, "1"]
 
 //filter遍历去重
-var a = [1, 1, '1', '2', 1];
+let arr = [1, 1, '1', '2', 1];
 
-function unique(arr) {
-    return arr.filter(function (ele, index, array) {
-        return array.indexOf(ele) === index//很巧妙,这样筛选一对一的,过滤掉重复的
-    })
+function unique1(arr) {
+  return arr.filter(function (ele, index, array) {
+    return array.indexOf(ele) === index//很巧妙,这样筛选一对一的,过滤掉重复的
+  })
 }
 
 //将以上函数改写为es6
-const unique = arr => arr.filter((ele, index, array) => array.indexOf(ele) === index);
+const unique2 = arr => arr.filter((ele, index, array) => array.indexOf(ele) === index);
 
-console.log(unique(a)) // [1, 2, "1"]
+console.log(unique2(a)) // [1, 2, "1"]
 
 //set去重，最简去重方式
-const unique = arr => [...new Set(arr)];
+const unique3 = arr => [...new Set(arr)];
 // unique([1,2,2,3,4,4,5]) -> [1,2,3,4,5]
 
